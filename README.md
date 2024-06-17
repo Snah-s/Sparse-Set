@@ -1,5 +1,7 @@
 # Sparse-Set
-# Integrantes:
+
+## Integrantes
+
 - Camilo Soto
 - Diego Quispe
 - Christian Frisancho
