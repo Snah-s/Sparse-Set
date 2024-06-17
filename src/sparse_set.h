@@ -11,10 +11,10 @@ private:
   vector<int> dense;
   vector<int> sparse;
   int size;
-  int maxElements; // tambien lo puedes interpretar como el tamaño maximo
+  int maxElements; // Lo puedes interpretar como el tamaño maximo del set y el rango de los elementos
 
 public:
-  SparseSet(int MaxElements): maxElements(MaxElements), size(0){
+  SparseSet(int MaxElements): size(0), maxElements(MaxElements) {
     dense.resize(maxElements);
     sparse.resize(maxElements);
   }
