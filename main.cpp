@@ -6,30 +6,30 @@
 using namespace std;
 
 int main(){
-  // Max Element == 40
+  int Max_Element = 100000;
   HashSet<int> hashSet;
-  SparseSet sparseSet(40);
+  SparseSet sparseSet(Max_Element);
 
   // Insert 10 elements
   // start chrono
   auto start = chrono::high_resolution_clock::now();
-  for (int i = 0; i < 10; i++){
+  for (int i = 0; i < Max_Element; i++){
     hashSet.insert(i);
   }
   // end chrono
   auto end = chrono::high_resolution_clock::now();
-  auto duration = chrono::duration_cast<chrono::microseconds>(end - start);
-  cout << "HashSet insert: " << duration.count() << " microseconds" << endl;
+  auto duration = chrono::duration_cast<chrono::milliseconds>(end - start);
+  cout << "HashSet insert: " << duration.count() << " milliseconds" << endl;
 
   // start chrono
   start = chrono::high_resolution_clock::now();
-  for (int i = 0; i < 10; i++){
+  for (int i = 0; i < Max_Element; i++){
     sparseSet.insert(i);
   }
   // end chrono
   end = chrono::high_resolution_clock::now();
-  duration = chrono::duration_cast<chrono::microseconds>(end - start);
+  duration = chrono::duration_cast<chrono::milliseconds>(end - start);
   
-  cout << "SparseSet insert: " << duration.count() << " microseconds" << endl;
+  cout << "SparseSet insert: " << duration.count() << " milliseconds" << endl;
 
 }
