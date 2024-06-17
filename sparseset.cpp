@@ -2,34 +2,52 @@
 #include <vector>
 using namespace  std;
 
+class BitVector {
+private:
+    vector<int> bv;
+    int capacity;
 
-bool initbv(vector<int>& bv, int val) {
-    bv = vector<int>(val / 32 + 1, 0);
-    return true;
-}
-
-void set(vector<int>& bv, int i) {
-    bv[i >> 5] |= (1 << (i & 5));
-}
-
-int member(vector<int>& bv, int i) {
-    return bv[i >> 5] & (1 << (i & 0x1f));
-}
-int main() {
-    std::vector<int> bitVector;
-
-    initbv(bitVector, 32);
-
-    int s1[] = {32, 5, 0};
-    int s2[] = {32, 4, 5, 0};
-
-    for (int i = 0; s1[i]; i++) {
-        set(bitVector, s1[i]);
+public:
+    BitVector(int val) {
+        initbv(val);
     }
 
-    for (int i = 0; s2[i]; i++) {
-        if (member(bitVector, s2[i])) {
-            cout << s2[i] << std::endl;
+    bool initbv(int val) {
+        bv = vector<int>(val / 32 + 1, 0);
+        capacity = val;
+        return true;
+    }
+
+    void insert(int i) {
+        bv[i >> 5] |= (1 << (i & 0x1f));
+    }
+
+    void eliminar(int i) {
+        bv[i >> 5] &= ~(1 << (i & 0x1f));
+    }
+
+
+    int member(int i) {
+        return bv[i >> 5] & (1 << (i & 0x1f));
+    }
+    int find(int k) {
+        int contador = 0;
+        for (int i = 0; i < capacity; ++i) {
+            if (member(i)) {
+                if (contador == k) {
+                    return i;
+                }
+                contador++;
+            }
         }
+        return -1; //no se encontro
     }
-}
+
+    void clearAll() {
+        fill(bv.begin(), bv.end(), 0);
+    }
+
+    int size() {
+        return capacity;
+    }
+};
