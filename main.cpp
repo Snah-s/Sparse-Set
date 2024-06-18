@@ -81,7 +81,7 @@ void testIntersectHashSet(){
   
     auto start = high_resolution_clock::now();
   
-    HashSet<int> *hashSet3 = hashSet1->insersection(hashSet2);
+    HashSet<int> *hashSet3 = hashSet1->intersection(hashSet2);
   
     auto stop = high_resolution_clock::now();
     auto duration = duration_cast<microseconds>(stop - start);
