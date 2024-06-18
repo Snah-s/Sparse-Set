@@ -51,8 +51,8 @@ public:
         return capacity;
     }
     static BitVector unionset( BitVector& set1,  BitVector& set2) {
-        size_t we=set1.bv.size();
-        size_t we2=set2.bv.size();
+        size_t we=set1.size();
+        size_t we2=set2.size();
 
         BitVector result(64);
 
@@ -70,8 +70,8 @@ public:
     }
 
     static BitVector intersect( BitVector& set1,  BitVector& set2) {
-        size_t we = set1.bv.size();
-        size_t we2 = set2.bv.size();
+        size_t we = set1.size();
+        size_t we2 = set2.size();
 
         BitVector result(64);
 
