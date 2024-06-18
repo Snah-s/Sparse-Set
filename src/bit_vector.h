@@ -7,7 +7,6 @@ class BitVector {
 private:
     vector<int> bv;
     int capacity;
-
 public:
     BitVector(int val) {
         initbv(val);
@@ -74,7 +73,7 @@ public:
         size_t we = set1.bv.size();
         size_t we2 = set2.bv.size();
 
-        BitVector result(60);
+        BitVector result(64);
 
 
         unordered_set<int> set2_elements;
