@@ -16,7 +16,7 @@ private:
 public:
   SparseSet(int MaxElements): size(0), maxElements(MaxElements) {
     dense.resize(maxElements);
-    sparse.resize(maxElements);
+    sparse.resize(maxElements, -1);
   }
 
   void insert(int element){
@@ -33,13 +33,13 @@ public:
 
   void remove (int element){
     if (element >= maxElements || element < 0){
-      throw "Elemento invalido";
+      throw "Elemento Invalido";
     }
 
     int index = sparse[element];
 
     if (index < size && dense[index] == element){
-      int lastElement = dense[size -1];
+      int lastElement = dense[size - 1];
       dense[index] = lastElement;
       sparse[lastElement] = index;
       size--;
@@ -51,6 +51,9 @@ public:
   }
 
   void clear(){
+    for (int i = 0; i < size; i++) {
+        sparse[dense[i]] = -1;
+    }
     size = 0;
   }
 
@@ -64,6 +67,32 @@ public:
       result += to_string(dense[i]) + " ";
     }
     return result;
+  }
+
+  SparseSet unionSet(const SparseSet& other){
+    SparseSet result(maxElements);
+    for (int i = 0; i < size; i++) {
+      result.insert(dense[i]);
+    }
+    for (int i = 0; i < other.size; i++) {
+      result.insert(other.dense[i]);
+    }
+    return result;
+  }
+
+  SparseSet intersection(const SparseSet& other){
+    SparseSet result(maxElements);
+    for (int i = 0; i < size; i++) {
+      if (other.exist(dense[i])) {
+        result.insert(dense[i]);
+      }
+    }
+    return result;
+  }
+
+  ~SparseSet(){
+    dense.clear();
+    sparse.clear();
   }
 };
 
