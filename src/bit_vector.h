@@ -1,5 +1,6 @@
 #include <iostream>
 #include <vector>
+#include<unordered_set>
 using namespace  std;
 
 class BitVector {
@@ -47,7 +48,48 @@ public:
         fill(bv.begin(), bv.end(), 0);
     }
 
-    int size() {
+    int size () {
         return capacity;
     }
+    static BitVector unionset( BitVector& set1,  BitVector& set2) {
+        size_t we=set1.bv.size();
+        size_t we2=set2.bv.size();
+
+        BitVector result(64);
+
+        for(int i=0;i<we;i++){
+            int nuevo=set1.find(i);
+            result.insert(nuevo);
+        }
+
+        for(int j=0;j<we2;j++){
+            int nuevo2=set2.find(j);
+            result.insert(nuevo2);
+        }
+
+        return result;
+    }
+
+    static BitVector intersect( BitVector& set1,  BitVector& set2) {
+        size_t we = set1.bv.size();
+        size_t we2 = set2.bv.size();
+
+        BitVector result(60);
+
+
+        unordered_set<int> set2_elements;
+        for (size_t j = 0; j < we2; j++) {
+            set2_elements.insert(set2.find(j));
+        }
+
+        for (size_t i = 0; i < we; i++) {
+            int nuevo = set1.find(i);
+            if (set2_elements.find(nuevo) != set2_elements.end()) {
+                result.insert(nuevo);
+            }
+        }
+
+        return result;
+    }
+
 };
