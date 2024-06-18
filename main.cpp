@@ -7,7 +7,7 @@
 using namespace std;
 using namespace std::chrono;
 
-int main(){
+void testBasics(){
 
   int size = 100;
 
@@ -59,4 +59,189 @@ int main(){
   cout << "HashSet: Total execution time: " << duration2.count() << " microseconds" << endl;
 
   delete hashSet;
+
+}
+
+void testIntersectHashSet(){
+  
+    int size = 100;
+  
+    HashSet<int> *hashSet1 = new HashSet<int>;
+    HashSet<int> *hashSet2 = new HashSet<int>;
+  
+    random_device rd;
+    mt19937 gen(rd());
+    uniform_int_distribution<> distrib(0, size - 1);
+  
+    for(int i = 0; i < size; i++) {
+      int num = distrib(gen);
+      hashSet1->insert(num);
+      hashSet2->insert(num);
+    }
+  
+    auto start = high_resolution_clock::now();
+  
+    HashSet<int> *hashSet3 = hashSet1->insersection(hashSet2);
+  
+    auto stop = high_resolution_clock::now();
+    auto duration = duration_cast<microseconds>(stop - start);
+  
+    cout << "HashSet Intersection: Total execution time: " << duration.count() << " microseconds" << endl;
+  
+    delete hashSet1;
+    delete hashSet2;
+    delete hashSet3;
+}
+
+void testUnionHashSet(){
+  
+    int size = 100;
+  
+    HashSet<int> *hashSet1 = new HashSet<int>;
+    HashSet<int> *hashSet2 = new HashSet<int>;
+  
+    random_device rd;
+    mt19937 gen(rd());
+    uniform_int_distribution<> distrib(0, size - 1);
+  
+    for(int i = 0; i < size; i++) {
+      int num = distrib(gen);
+      hashSet1->insert(num);
+      hashSet2->insert(num);
+    }
+  
+    auto start = high_resolution_clock::now();
+  
+    HashSet<int> *hashSet3 = hashSet1->unionSet(hashSet2);
+  
+    auto stop = high_resolution_clock::now();
+    auto duration = duration_cast<microseconds>(stop - start);
+  
+    cout << "HashSet Union: Total execution time: " << duration.count() << " microseconds" << endl;
+  
+    delete hashSet1;
+    delete hashSet2;
+    delete hashSet3;
+}
+
+void testIntersectSparseSet(){
+  
+    int size = 100;
+  
+    SparseSet sparseSet1(size);
+    SparseSet sparseSet2(size);
+  
+    random_device rd;
+    mt19937 gen(rd());
+    uniform_int_distribution<> distrib(0, size - 1);
+  
+    for(int i = 0; i < size; i++) {
+      int num = distrib(gen);
+      sparseSet1.insert(num);
+      sparseSet2.insert(num);
+    }
+  
+    auto start = high_resolution_clock::now();
+  
+    SparseSet sparseSet3 = sparseSet1.intersection(sparseSet2);
+  
+    auto stop = high_resolution_clock::now();
+    auto duration = duration_cast<microseconds>(stop - start);
+  
+    cout << "SparseSet Intersection: Total execution time: " << duration.count() << " microseconds" << endl;
+  
+}
+
+void testUnionSparseSet(){
+  
+    int size = 100;
+  
+    SparseSet sparseSet1(size);
+    SparseSet sparseSet2(size);
+  
+    random_device rd;
+    mt19937 gen(rd());
+    uniform_int_distribution<> distrib(0, size - 1);
+  
+    for(int i = 0; i < size; i++) {
+      int num = distrib(gen);
+      sparseSet1.insert(num);
+      sparseSet2.insert(num);
+    }
+  
+    auto start = high_resolution_clock::now();
+  
+    SparseSet sparseSet3 = sparseSet1.unionSet(sparseSet2);
+  
+    auto stop = high_resolution_clock::now();
+    auto duration = duration_cast<microseconds>(stop - start);
+  
+    cout << "SparseSet Union: Total execution time: " << duration.count() << " microseconds" << endl;
+  
+}
+
+void testIntersectBitVector(){
+  
+    int size = 100;
+  
+    BitVector bitVector1(size);
+    BitVector bitVector2(size);
+  
+    random_device rd;
+    mt19937 gen(rd());
+    uniform_int_distribution<> distrib(0, size - 1);
+  
+    for(int i = 0; i < size; i++) {
+      int num = distrib(gen);
+      bitVector1.insert(num);
+      bitVector2.insert(num);
+    }
+  
+    auto start = high_resolution_clock::now();
+  
+    BitVector bitVector3 = BitVector::intersect(bitVector1, bitVector2);
+  
+    auto stop = high_resolution_clock::now();
+    auto duration = duration_cast<microseconds>(stop - start);
+  
+    cout << "BitVector Intersection: Total execution time: " << duration.count() << " microseconds" << endl;
+}
+
+void testUnionBitVector(){
+    
+      int size = 100;
+    
+      BitVector bitVector1(size);
+      BitVector bitVector2(size);
+    
+      random_device rd;
+      mt19937 gen(rd());
+      uniform_int_distribution<> distrib(0, size - 1);
+    
+      for(int i = 0; i < size; i++) {
+        int num = distrib(gen);
+        bitVector1.insert(num);
+        bitVector2.insert(num);
+      }
+    
+      auto start = high_resolution_clock::now();
+    
+      BitVector bitVector3 = BitVector::unionset(bitVector1, bitVector2);
+    
+      auto stop = high_resolution_clock::now();
+      auto duration = duration_cast<microseconds>(stop - start);
+    
+      cout << "BitVector Union: Total execution time: " << duration.count() << " microseconds" << endl;
+}
+
+
+int main(){
+  testBasics();
+  testIntersectHashSet();
+  testUnionHashSet();
+  testIntersectSparseSet();
+  testUnionSparseSet();
+  testIntersectBitVector();
+  testUnionBitVector();
+  return 0;
 }
