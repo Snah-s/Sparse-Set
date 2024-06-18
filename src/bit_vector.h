@@ -19,6 +19,9 @@ public:
     }
 
     void insert(int i) {
+        if (member(i)){
+            return;
+        }
         bv[i >> 5] |= (1 << (i & 0x1f));
     }
 
@@ -54,16 +57,17 @@ public:
         size_t we=set1.size();
         size_t we2=set2.size();
 
-        BitVector result(64);
+        size_t maxSize = max(we, we2);
 
-        for(int i=0;i<we;i++){
-            int nuevo=set1.find(i);
-            result.insert(nuevo);
-        }
+        BitVector result(maxSize);
 
-        for(int j=0;j<we2;j++){
-            int nuevo2=set2.find(j);
-            result.insert(nuevo2);
+        for(int i=0;i<maxSize;i++){
+            int nuevo=set1.member(i);
+            int nuevo2=set2.member(i);
+
+            if(nuevo != 0 || nuevo2 != 0){
+                result.insert(i);
+            }
         }
 
         return result;
@@ -72,19 +76,13 @@ public:
     static BitVector intersect( BitVector& set1,  BitVector& set2) {
         size_t we = set1.size();
         size_t we2 = set2.size();
+        int maxSize = max(we, we2);
 
-        BitVector result(64);
+        BitVector result(maxSize);
 
-
-        unordered_set<int> set2_elements;
-        for (size_t j = 0; j < we2; j++) {
-            set2_elements.insert(set2.find(j));
-        }
-
-        for (size_t i = 0; i < we; i++) {
-            int nuevo = set1.find(i);
-            if (set2_elements.find(nuevo) != set2_elements.end()) {
-                result.insert(nuevo);
+        for (size_t j = 0; j < maxSize; j++) {
+            if (set1.member(j) != 0 && set2.member(j) != 0) {
+                result.insert(j);
             }
         }
 
