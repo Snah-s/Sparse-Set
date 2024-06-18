@@ -91,12 +91,14 @@ public:
 
     ~HashTable(){
 //        for (int i = 0; i < capacity; i++){
-        Node* current = head;
-        while (current != nullptr){
-            Node* next = current->nextInsert;
+        if (size > 0){
+            Node *current = head;
+            while (current != nullptr) {
+                Node *next = current->nextInsert;
 //                cout << current->key << " " << current->value << endl;
-            delete current;
-            current = next;
+                delete current;
+                current = next;
+            }
         }
 //        }
         delete[] array;
@@ -181,6 +183,12 @@ public:
                 }
                 if (current->nextInsert){
                     current->nextInsert->prev = current->prev;
+                }
+                if (current == head) {
+                    head = current->nextInsert;
+                }
+                if (current == tail) {
+                    tail = current->prev;
                 }
                 delete current;
                 size--;
@@ -281,7 +289,7 @@ public:
         }
         return newSet;
     }
-    HashSet* insersection(HashSet* otherSet){
+    HashSet* intersection(HashSet* otherSet){
         bool thisIsTheMinSet = this->size() < otherSet->size();
         HashSet* newSet = new HashSet();
         if (thisIsTheMinSet){
@@ -333,8 +341,6 @@ public:
         delete hashTable;
     }
 };
-
-
 
 
 
