@@ -2,92 +2,97 @@
 #define SPARSE_SET_H
 
 #include <iostream>
-#include <vector>
+#include <stdexcept>
+#include <string>
 
 using namespace std;
 
 class SparseSet {
 private:
-  vector<int> dense;
-  vector<int> sparse;
-  int size;
-  int maxElements; // Lo puedes interpretar como el tamaño maximo del set y el rango de los elementos
+    int* dense;
+    int* sparse;
+    int size;
+    int maxElements;
 
 public:
-  SparseSet(int MaxElements): size(0), maxElements(MaxElements) {
-    dense.resize(maxElements);
-    sparse.resize(maxElements);
-  }
-
-  void insert(int element){
-    if (element >= maxElements || element < 0){
-      throw "Elemento invalido";
+    SparseSet(int MaxElements) : size(0), maxElements(MaxElements) {
+        dense = new int[maxElements];
+        sparse = new int[maxElements];
     }
 
-    if (sparse[element] >= size || dense[sparse[element]] != element){
-      sparse[element] = size;
-      dense[size] = element;
-      size++;
-    }
-  }
-
-  void remove (int element){
-    if (element >= maxElements || element < 0){
-      throw "Elemento Invalido";
+    ~SparseSet() {
+        delete[] dense;
+        delete[] sparse;
     }
 
-    int index = sparse[element];
+    void insert(int element) {
+        if (element >= maxElements || element < 0) {
+            throw invalid_argument("Elemento invalido");
+        }
 
-    if (exist(element)){
-      int lastElement = dense[size - 1];
-      dense[index] = lastElement;
-      sparse[lastElement] = index;
-      size--;
+        if (sparse[element] >= size || dense[sparse[element]] != element) {
+            sparse[element] = size;
+            dense[size] = element;
+            size++;
+        }
     }
-  }
 
-  bool exist(int element)const{
-    return element < maxElements && element >= 0 && sparse[element] < size && dense[sparse[element]] == element;
-  }
+    void remove(int element) {
+        if (element >= maxElements || element < 0) {
+            throw invalid_argument("Elemento Invalido");
+        }
 
-  void clear(){
-    size = 0;
-  }
+        int index = sparse[element];
 
-  int getSize()const{
-    return size;
-  }
-
-  string toString()const{
-    string result = "";
-    for (int i = 0; i < size; i++){
-      result += to_string(dense[i]) + " ";
+        if (exist(element)) {
+            int lastElement = dense[size - 1];
+            dense[index] = lastElement;
+            sparse[lastElement] = index;
+            size--;
+        }
     }
-    return result;
-  }
 
-  SparseSet unionSet(const SparseSet& other){
-    SparseSet result(max(maxElements, other.maxElements));
-    for (int i = 0; i < size; i++) {
-      result.insert(dense[i]);
+    bool exist(int element) const {
+        return element < maxElements && element >= 0 && sparse[element] < size && dense[sparse[element]] == element;
     }
-    for (int i = 0; i < other.size; i++) {
-      result.insert(other.dense[i]);
-    }
-    return result;
-  }
 
-  SparseSet intersection(const SparseSet& other){
-    SparseSet result(maxElements);
-    for (int i = 0; i < size; i++) {
-      if (other.exist(dense[i])) {
-        result.insert(dense[i]);
-      }
+    void clear() {
+        size = 0;
     }
-    return result;
-  }
 
-    SparseSet difference(const SparseSet& other){
+    int getSize() const {
+        return size;
+    }
+
+    string toString() const {
+        string result = "";
+        for (int i = 0; i < size; i++) {
+            result += to_string(dense[i]) + " ";
+        }
+        return result;
+    }
+
+    void unionSet(const SparseSet& other) {
+        SparseSet result(max(maxElements, other.maxElements));
+        for (int i = 0; i < size; i++) {
+            result.insert(dense[i]);
+        }
+        for (int i = 0; i < other.size; i++) {
+            result.insert(other.dense[i]);
+        }
+    }
+
+    SparseSet intersection(const SparseSet& other) {
+        SparseSet result(maxElements);
+        for (int i = 0; i < size; i++) {
+            if (other.exist(dense[i])) {
+                result.insert(dense[i]);
+            }
+        }
+        return result;
+    }
+
+    SparseSet difference(const SparseSet& other) {
         SparseSet result(maxElements);
         for (int i = 0; i < size; i++) {
             if (!other.exist(dense[i])) {
