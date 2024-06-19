@@ -7,9 +7,8 @@
 using namespace std;
 using namespace std::chrono;
 
-void testBasics(){
+void testBasics(int size){
 
-    int size = 100;
 
     SparseSet sparseSet(size);
     BitVector bitVector(size);
@@ -62,9 +61,8 @@ void testBasics(){
 
 }
 
-void testIntersectHashSet(){
+void testIntersectHashSet(int size){
 
-    int size = 100;
 
     HashSet<int> *hashSet1 = new HashSet<int>;
     HashSet<int> *hashSet2 = new HashSet<int>;
@@ -93,9 +91,7 @@ void testIntersectHashSet(){
     delete hashSet3;
 }
 
-void testUnionHashSet(){
-
-    int size = 100;
+void testUnionHashSet(int size){
 
     HashSet<int> *hashSet1 = new HashSet<int>;
     HashSet<int> *hashSet2 = new HashSet<int>;
@@ -123,9 +119,8 @@ void testUnionHashSet(){
     delete hashSet2;
     delete hashSet3;
 }
-void testDifferenceHashTable(){
+void testDifferenceHashTable(int size){
 
-        int size = 100;
 
         HashSet<int> *hashSet1 = new HashSet<int>;
         HashSet<int> *hashSet2 = new HashSet<int>;
@@ -155,9 +150,8 @@ void testDifferenceHashTable(){
 
 }
 
-void testIntersectSparseSet(){
+void testIntersectSparseSet(int size){
 
-    int size = 100;
 
     SparseSet sparseSet1(size);
     SparseSet sparseSet2(size);
@@ -183,9 +177,8 @@ void testIntersectSparseSet(){
 
 }
 
-void testUnionSparseSet(){
+void testUnionSparseSet(int size){
 
-    int size = 100;
 
     SparseSet sparseSet1(size);
     SparseSet sparseSet2(size);
@@ -209,8 +202,8 @@ void testUnionSparseSet(){
     cout << "SparseSet Union: Total execution time: " << duration.count() << " microseconds" << endl;
 
 }
-void testDifferencSparseSet(){
-        int size = 100;
+void testDifferencSparseSet(int size){
+
 
         SparseSet sparseSet1(size);
         SparseSet sparseSet2(size);
@@ -235,9 +228,8 @@ void testDifferencSparseSet(){
 
 }
 
-void testIntersectBitVector(){
+void testIntersectBitVector(int size){
 
-    int size = 100;
 
     BitVector bitVector1(size);
     BitVector bitVector2(size);
@@ -262,9 +254,8 @@ void testIntersectBitVector(){
     cout << "BitVector Intersection: Total execution time: " << duration.count() << " microseconds" << endl;
 }
 
-void testUnionBitVector(){
+void testUnionBitVector(int size){
 
-    int size = 100;
 
     BitVector bitVector1(size);
     BitVector bitVector2(size);
@@ -289,8 +280,7 @@ void testUnionBitVector(){
     cout << "BitVector Union: Total execution time: " << duration.count() << " microseconds" << endl;
 }
 
-void testDifferenceBitVector(){
-        int size = 100;
+void testDifferenceBitVector(int size){
 
         BitVector bitVector1(size);
         BitVector bitVector2(size);
@@ -316,20 +306,23 @@ void testDifferenceBitVector(){
 
 }
 
+void testAll(int size){
+    testBasics(size);
+    testIntersectHashSet(size);
+    testUnionHashSet(size);
+    testDifferenceHashTable(size);
+
+    testIntersectSparseSet(size);
+    testUnionSparseSet(size);
+    testDifferencSparseSet(size);
+
+    testIntersectBitVector(size);
+    testUnionBitVector(size);
+    testDifferenceBitVector(size);
+}
 
 
 int main(){
-    testBasics();
-    testIntersectHashSet();
-    testUnionHashSet();
-    testDifferenceHashTable();
-
-    testIntersectSparseSet();
-    testUnionSparseSet();
-    testDifferencSparseSet();
-
-    testIntersectBitVector();
-    testUnionBitVector();
-    testDifferenceBitVector();
+    testAll(100);
     return 0;
 }
