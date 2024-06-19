@@ -76,12 +76,13 @@ public:
     static BitVector intersect( BitVector& set1,  BitVector& set2) {
         size_t we = set1.size();
         size_t we2 = set2.size();
-        int maxSize = max(we, we2);
+        size_t maxSize = max(we, we2);
 
         BitVector result(maxSize);
-
-        for (size_t j = 0; j < maxSize; j++) {
-            if (set1.member(j) != 0 && set2.member(j) != 0) {
+        for (int j = 0; j < maxSize; j++) {
+            int nuevo=set1.member(j);
+            int nuevo2=set2.member(j);
+            if (nuevo != 0 && nuevo2 != 0) {
                 result.insert(j);
             }
         }
@@ -96,7 +97,9 @@ public:
         BitVector result(maxSize);
 
         for (size_t j = 0; j < maxSize; j++) {
-            if (set1.member(j) != 0 && set2.member(j) == 0) {
+            int nuevo=set1.member(j);
+            int nuevo2=set2.member(j);
+            if (nuevo != 0 && nuevo2 == 0) {
                 result.insert(j);
             }
         }
@@ -105,3 +108,4 @@ public:
     }
 
 };
+
