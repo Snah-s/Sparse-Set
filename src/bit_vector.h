@@ -88,5 +88,20 @@ public:
 
         return result;
     }
+    static BitVector difference( BitVector& set1,  BitVector& set2) {
+        size_t we = set1.size();
+        size_t we2 = set2.size();
+        int maxSize = max(we, we2);
+
+        BitVector result(maxSize);
+
+        for (size_t j = 0; j < maxSize; j++) {
+            if (set1.member(j) != 0 && set2.member(j) == 0) {
+                result.insert(j);
+            }
+        }
+
+        return result;
+    }
 
 };
