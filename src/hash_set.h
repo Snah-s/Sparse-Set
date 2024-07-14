@@ -127,8 +127,13 @@ public:
 //        }
         array[index] = newNode;
         size++;
-
-        if (size / capacity > maxColision) rehashing();
+        int countcol = 0;
+        auto current = array[index];
+        while(current){
+            countcol++;
+            current = current->next;
+        }
+        if (countcol > maxColision) rehashing();
     }
     void insert(pair<TK, TV> item){
         insert(item.first, item.second);
@@ -238,6 +243,7 @@ private:
                 current->next = newArray[index];
             }
             newArray[index] = current;
+
             current = current->nextInsert;
         }
         delete[] array;
