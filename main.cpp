@@ -4,11 +4,31 @@
 #include <chrono>
 #include <random>
 
+//#include <iostream>
+#include <string>
+
 using namespace std;
 using namespace std::chrono;
+void testSpaceSparseSet(int size){
+    for (volatile int i = 0; i < 100000000; ++i);
+    SparseSet sparseSet(size);
+    for (volatile int i = 0; i < 100000000; ++i);
+}
+void testSpaceBitVector(int size){
+    for (volatile int i = 0; i < 100000000; ++i);
+    BitVector bitVector(size);
+    for (volatile int i = 0; i < 100000000; ++i);
+}
+void testSpaceHashSet(int size){
+    for (volatile int i = 0; i < 100000000; ++i);
+    HashSet<int> hs;
+    for (int i = 0; i < size; ++i) {
+        hs.insert(i);
+    }
+    for (volatile int i = 0; i < 100000000; ++i);
+}
 
 void testBasics(int size){
-
 
     SparseSet sparseSet(size);
     BitVector bitVector(size);
@@ -30,7 +50,7 @@ void testBasics(int size){
     auto stop = high_resolution_clock::now();
     auto duration = duration_cast<microseconds>(stop - start);
 
-    cout << "SparseSet: Total execution time: " << duration.count() << " microseconds" << endl;
+    cout <<  duration.count() << endl;
 
     auto start1 = high_resolution_clock::now();
 
@@ -43,7 +63,7 @@ void testBasics(int size){
 
     auto stop1 = high_resolution_clock::now();
     auto duration1 = duration_cast<microseconds>(stop1 - start1);
-    cout << "BitVector: Total execution time: " << duration1.count() << " microseconds" << endl;
+    cout <<  duration1.count() << endl;
     auto start2 = high_resolution_clock::now();
 
 
@@ -56,12 +76,12 @@ void testBasics(int size){
 
     auto stop2 = high_resolution_clock::now();
     auto duration2 = duration_cast<microseconds>(stop2 - start2);
-    cout << "HashSet: Total execution time: " << duration2.count() << " microseconds" << endl;
+    cout <<  duration2.count() << endl;
     delete hashSet;
 
 }
 
-void testIntersectHashSet(int size){
+void testIntersectHashSet(int size, int insertions){
 
 
     HashSet<int> *hashSet1 = new HashSet<int>;
@@ -69,9 +89,9 @@ void testIntersectHashSet(int size){
 
     random_device rd;
     mt19937 gen(rd());
-    uniform_int_distribution<> distrib(0, size - 1);
+    uniform_int_distribution<> distrib(0, insertions - 1);
 
-    for(int i = 0; i < size; i++) {
+    for(int i = 0; i < insertions; i++) {
         int num = distrib(gen);
         hashSet1->insert(num);
         hashSet2->insert(num);
@@ -84,23 +104,23 @@ void testIntersectHashSet(int size){
     auto stop = high_resolution_clock::now();
     auto duration = duration_cast<microseconds>(stop - start);
 
-    cout << "HashSet Intersection: Total execution time: " << duration.count() << " microseconds" << endl;
+    cout << duration.count() << endl;
 
     delete hashSet1;
     delete hashSet2;
     delete hashSet3;
 }
 
-void testUnionHashSet(int size){
+void testUnionHashSet(int size, int insertions){
 
     HashSet<int> *hashSet1 = new HashSet<int>;
     HashSet<int> *hashSet2 = new HashSet<int>;
 
     random_device rd;
     mt19937 gen(rd());
-    uniform_int_distribution<> distrib(0, size - 1);
+    uniform_int_distribution<> distrib(0, insertions - 1);
 
-    for(int i = 0; i < size; i++) {
+    for(int i = 0; i < insertions; i++) {
         int num = distrib(gen);
         hashSet1->insert(num);
         hashSet2->insert(num);
@@ -113,13 +133,13 @@ void testUnionHashSet(int size){
     auto stop = high_resolution_clock::now();
     auto duration = duration_cast<microseconds>(stop - start);
 
-    cout << "HashSet Union: Total execution time: " << duration.count() << " microseconds" << endl;
+    cout <<  duration.count()<< endl;
 
     delete hashSet1;
     delete hashSet2;
     delete hashSet3;
 }
-void testDifferenceHashTable(int size){
+void testDifferenceHashTable(int size, int insertions){
 
 
         HashSet<int> *hashSet1 = new HashSet<int>;
@@ -127,9 +147,9 @@ void testDifferenceHashTable(int size){
 
         random_device rd;
         mt19937 gen(rd());
-        uniform_int_distribution<> distrib(0, size - 1);
+        uniform_int_distribution<> distrib(0, insertions - 1);
 
-        for(int i = 0; i < size; i++) {
+        for(int i = 0; i < insertions; i++) {
             int num = distrib(gen);
             hashSet1->insert(num);
             hashSet2->insert(num);
@@ -142,7 +162,7 @@ void testDifferenceHashTable(int size){
         auto stop = high_resolution_clock::now();
         auto duration = duration_cast<microseconds>(stop - start);
 
-        cout << "HashSet Difference: Total execution time: " << duration.count() << " microseconds" << endl;
+        cout <<  duration.count()  << endl;
 
         delete hashSet1;
         delete hashSet2;
@@ -150,7 +170,7 @@ void testDifferenceHashTable(int size){
 
 }
 
-void testIntersectSparseSet(int size){
+void testIntersectSparseSet(int size, int insertions){
 
 
     SparseSet sparseSet1(size);
@@ -158,9 +178,9 @@ void testIntersectSparseSet(int size){
 
     random_device rd;
     mt19937 gen(rd());
-    uniform_int_distribution<> distrib(0, size - 1);
+    uniform_int_distribution<> distrib(0, insertions - 1);
 
-    for(int i = 0; i < size; i++) {
+    for(int i = 0; i < insertions; i++) {
         int num = distrib(gen);
         sparseSet1.insert(num);
         sparseSet2.insert(num);
@@ -173,11 +193,11 @@ void testIntersectSparseSet(int size){
     auto stop = high_resolution_clock::now();
     auto duration = duration_cast<microseconds>(stop - start);
 
-    cout << "SparseSet Intersection: Total execution time: " << duration.count() << " microseconds" << endl;
+    cout  << duration.count() <<  endl;
 
 }
 
-void testUnionSparseSet(int size){
+void testUnionSparseSet(int size, int insertions){
 
 
     SparseSet sparseSet1(size);
@@ -185,9 +205,9 @@ void testUnionSparseSet(int size){
 
     random_device rd;
     mt19937 gen(rd());
-    uniform_int_distribution<> distrib(0, size - 1);
+    uniform_int_distribution<> distrib(0, insertions - 1);
 
-    for(int i = 0; i < size; i++) {
+    for(int i = 0; i < insertions; i++) {
         int num = distrib(gen);
         sparseSet1.insert(num);
         sparseSet2.insert(num);
@@ -195,14 +215,14 @@ void testUnionSparseSet(int size){
 
     auto start = high_resolution_clock::now();
 
-    SparseSet sparseSet3 = sparseSet1.unionSet(sparseSet2);
+    sparseSet1.unionSet(sparseSet2);
     auto stop = high_resolution_clock::now();
     auto duration = duration_cast<microseconds>(stop - start);
 
-    cout << "SparseSet Union: Total execution time: " << duration.count() << " microseconds" << endl;
+    cout << duration.count() << endl;
 
 }
-void testDifferencSparseSet(int size){
+void testDifferencSparseSet(int size, int insertions){
 
 
         SparseSet sparseSet1(size);
@@ -210,9 +230,9 @@ void testDifferencSparseSet(int size){
 
         random_device rd;
         mt19937 gen(rd());
-        uniform_int_distribution<> distrib(0, size - 1);
+        uniform_int_distribution<> distrib(0, insertions - 1);
 
-        for(int i = 0; i < size; i++) {
+        for(int i = 0; i < insertions; i++) {
             int num = distrib(gen);
             sparseSet1.insert(num);
             sparseSet2.insert(num);
@@ -224,11 +244,11 @@ void testDifferencSparseSet(int size){
         auto stop = high_resolution_clock::now();
         auto duration = duration_cast<microseconds>(stop - start);
 
-        cout << "SparseSet Difference: Total execution time: " << duration.count() << " microseconds" << endl;
+        cout << duration.count() << endl;
 
 }
 
-void testIntersectBitVector(int size){
+void testIntersectBitVector(int size, int insertions){
 
 
     BitVector bitVector1(size);
@@ -236,9 +256,9 @@ void testIntersectBitVector(int size){
 
     random_device rd;
     mt19937 gen(rd());
-    uniform_int_distribution<> distrib(0, size - 1);
+    uniform_int_distribution<> distrib(0, insertions - 1);
 
-    for(int i = 0; i < size; i++) {
+    for(int i = 0; i < insertions; i++) {
         int num = distrib(gen);
         bitVector1.insert(num);
         bitVector2.insert(num);
@@ -251,10 +271,10 @@ void testIntersectBitVector(int size){
     auto stop = high_resolution_clock::now();
     auto duration = duration_cast<microseconds>(stop - start);
 
-    cout << "BitVector Intersection: Total execution time: " << duration.count() << " microseconds" << endl;
+    cout << duration.count() << endl;
 }
 
-void testUnionBitVector(int size){
+void testUnionBitVector(int size, int insertions){
 
 
     BitVector bitVector1(size);
@@ -262,9 +282,9 @@ void testUnionBitVector(int size){
 
     random_device rd;
     mt19937 gen(rd());
-    uniform_int_distribution<> distrib(0, size - 1);
+    uniform_int_distribution<> distrib(0, insertions - 1);
 
-    for(int i = 0; i < size; i++) {
+    for(int i = 0; i < insertions; i++) {
         int num = distrib(gen);
         bitVector1.insert(num);
         bitVector2.insert(num);
@@ -272,24 +292,24 @@ void testUnionBitVector(int size){
 
     auto start = high_resolution_clock::now();
 
-    BitVector bitVector3 = BitVector::unionset(bitVector1, bitVector2);
+    BitVector::unionset(bitVector1, bitVector2);
 
     auto stop = high_resolution_clock::now();
     auto duration = duration_cast<microseconds>(stop - start);
 
-    cout << "BitVector Union: Total execution time: " << duration.count() << " microseconds" << endl;
+    cout << duration.count() << endl;
 }
 
-void testDifferenceBitVector(int size){
+void testDifferenceBitVector(int size, int insertions){
 
         BitVector bitVector1(size);
         BitVector bitVector2(size);
 
         random_device rd;
         mt19937 gen(rd());
-        uniform_int_distribution<> distrib(0, size - 1);
+        uniform_int_distribution<> distrib(0, insertions - 1);
 
-        for(int i = 0; i < size; i++) {
+        for(int i = 0; i < insertions; i++) {
             int num = distrib(gen);
             bitVector1.insert(num);
             bitVector2.insert(num);
@@ -302,27 +322,111 @@ void testDifferenceBitVector(int size){
         auto stop = high_resolution_clock::now();
         auto duration = duration_cast<microseconds>(stop - start);
 
-        cout << "BitVector Difference: Total execution time: " << duration.count() << " microseconds" << endl;
+        cout << duration.count() << endl;
 
 }
+void testClearSparseSet(int size){
 
-void testAll(int size){
-    testBasics(size);
-    testIntersectHashSet(size);
-    testUnionHashSet(size);
-    testDifferenceHashTable(size);
+        SparseSet sparseSet(size);
 
-    testIntersectSparseSet(size);
-    testUnionSparseSet(size);
-    testDifferencSparseSet(size);
+        auto start = high_resolution_clock::now();
 
-    testIntersectBitVector(size);
-    testUnionBitVector(size);
-    testDifferenceBitVector(size);
+        sparseSet.clear();
+
+        auto stop = high_resolution_clock::now();
+        auto duration = duration_cast<nanoseconds>(stop - start);
+
+        cout << duration.count() << endl;
+
+
+}
+void testClearBitVector(int size){
+
+        BitVector bitVector(size);
+
+        auto start = high_resolution_clock::now();
+
+        bitVector.clearAll();
+
+        auto stop = high_resolution_clock::now();
+        auto duration = duration_cast<nanoseconds>(stop - start);
+
+        cout << duration.count() << endl;
+
+
+}
+void testClearHashTable(int size){
+    HashSet<int> hashSet;
+    for (int i = 0; i < size; ++i) {
+        hashSet.insert(i);
+    }
+
+    auto start = high_resolution_clock::now();
+    hashSet.clearSet();
+    auto stop = high_resolution_clock::now();
+    auto duration = duration_cast<nanoseconds>(stop - start);
+
+    cout << duration.count() << " ";
+}
+void testAll(int size, int insertions){
+//    testBasics(size);
+
+//    testUnionSparseSet(size, insertions);
+//    testUnionBitVector(size, insertions);
+//    testIntersectSparseSet(size, insertions);
+//    testIntersectBitVector(size, insertions);
+//    testDifferencSparseSet(size, insertions);
+//    testDifferenceBitVector(size, insertions);
+//    testClearSparseSet(size);
+//    testClearBitVector(size);
+//    testClearHashTable(size);
+}
+void spaceTestDifference(){
+    int size = 500;
+    int insertions = 100;
+    SparseSet sparseSet1(size);
+    SparseSet sparseSet2(size);
+
+    random_device rd;
+    mt19937 gen(rd());
+    uniform_int_distribution<> distrib(0, insertions - 1);
+
+    for(int i = 0; i < insertions; i++) {
+        int num = distrib(gen);
+        sparseSet1.insert(num);
+        sparseSet2.insert(num);
+    }
+
+    auto start = high_resolution_clock::now();
+
+    SparseSet sparseSet3 = sparseSet1.difference(sparseSet2);
+    auto stop = high_resolution_clock::now();
+    auto duration = duration_cast<microseconds>(stop - start);
+
+    cout << duration.count() << endl;
 }
 
+//g++ -g -o main main.cpp
+//valgrind --leak-check=full ./main
+//valgrind --tool=massif --stacks=yes --massif-out-file=massif.out ./main
+//ms_print massif.out
 
+
+//int main(int argc, char** argv){
 int main(){
-    testAll(100);
+//    testAll(500, 100); // 6230016 bytes
+//    testAll(5000, 100);
+//    testAll(50000, 100);
+//    testAll(500000, 100);
+//    testAll(5000000, 100);
+
+//    if (argc != 2) {
+//        std::cerr << "Uso: " << argv[0] << " <tamaño>" << std::endl;
+//        return 1;
+//    }
+//    int size = std::stoi(argv[1]);
+    testSpaceHashSet(5000);
+//    testSpaceBitVector(500);
+
     return 0;
 }
