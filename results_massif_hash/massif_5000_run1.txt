@@ -1,0 +1,312 @@
+--------------------------------------------------------------------------------
+Command:            ./main 5000
+Massif arguments:   --massif-out-file=massif.out
+ms_print arguments: massif.out
+--------------------------------------------------------------------------------
+
+
+    KB
+286.4^                                                                       #
+     |                                    @::::::::::::::::::::::::::::::::::#
+     |                                    @                                  #
+     |                                    @                                  #
+     |                                    @                                  #
+     |                                    @                                  #
+     |                                    @                                  #
+     |                                    @                                  #
+     |                                    @                                  #
+     |                                    @                                  #
+     |                                    @                                  #
+     |                                    @                                  #
+     |                                    @                                  #
+     |                                    @                                  #
+     |                                    @                                  #
+     |                                    @                                  #
+     |::::::::::::::::::::::::::::::::::::@                                  #
+     |:                                   @                                  #
+     |:                                   @                                  #
+     |:                                   @                                  #
+   0 +----------------------------------------------------------------------->Gi
+     0                                                                   1.494
+
+Number of snapshots: 67
+ Detailed snapshots: [8, 14, 20, 39, 43, 48, 52 (peak), 62]
+
+--------------------------------------------------------------------------------
+  n        time(i)         total(B)   useful-heap(B) extra-heap(B)    stacks(B)
+--------------------------------------------------------------------------------
+  0              0                0                0             0            0
+  1      2,339,750           72,712           72,704             8            0
+  2    802,449,619           72,752           72,736            16            0
+  3    802,470,304           76,176           75,520           656            0
+  4    802,492,877           80,016           78,656         1,360            0
+  5    802,507,773           83,056           81,088         1,968            0
+  6    802,532,822           86,256           83,776         2,480            0
+  7    802,550,366           89,856           86,656         3,200            0
+  8    802,573,955           92,664           89,408         3,256            0
+96.49% (89,408B) (heap allocation functions) malloc/new/new[], --alloc-fns, etc.
+->78.46% (72,704B) 0x490D939: ??? (in /usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.30)
+| ->78.46% (72,704B) 0x400647D: call_init.part.0 (dl-init.c:70)
+|   ->78.46% (72,704B) 0x4006567: call_init (dl-init.c:33)
+|     ->78.46% (72,704B) 0x4006567: _dl_init (dl-init.c:117)
+|       ->78.46% (72,704B) 0x40202C9: ??? (in /usr/lib/x86_64-linux-gnu/ld-linux-x86-64.so.2)
+|         ->78.46% (72,704B) 0x1: ???
+|           ->78.46% (72,704B) 0x1FFEFFFD1A: ???
+|             ->78.46% (72,704B) 0x1FFEFFFD21: ???
+|               
+->13.85% (12,832B) 0x10E6F5: HashTable<int, int>::insert(int, int) (hash_set.h:110)
+| ->13.85% (12,832B) 0x10DE09: HashSet<int>::insert(int) (hash_set.h:271)
+|   ->13.85% (12,832B) 0x10A814: testSpaceHashSet(int) (main.cpp:26)
+|     ->13.85% (12,832B) 0x10CA73: main (main.cpp:411)
+|       
+->04.14% (3,840B) 0x10EEFF: HashTable<int, int>::rehashing() (hash_set.h:234)
+| ->04.14% (3,840B) 0x10E7F7: HashTable<int, int>::insert(int, int) (hash_set.h:136)
+|   ->04.14% (3,840B) 0x10DE09: HashSet<int>::insert(int) (hash_set.h:271)
+|     ->04.14% (3,840B) 0x10A814: testSpaceHashSet(int) (main.cpp:26)
+|       ->04.14% (3,840B) 0x10CA73: main (main.cpp:411)
+|         
+->00.03% (32B) in 1+ places, all below ms_print's threshold (01.00%)
+
+--------------------------------------------------------------------------------
+  n        time(i)         total(B)   useful-heap(B) extra-heap(B)    stacks(B)
+--------------------------------------------------------------------------------
+  9    802,598,191           96,496           92,224         4,272            0
+ 10    802,624,959          102,096           96,704         5,392            0
+ 11    802,642,795          105,736           99,616         6,120            0
+ 12    802,664,747          110,216          103,200         7,016            0
+ 13    802,681,211          113,576          105,888         7,688            0
+ 14    802,733,324          118,904          111,168         7,736            0
+93.49% (111,168B) (heap allocation functions) malloc/new/new[], --alloc-fns, etc.
+->61.15% (72,704B) 0x490D939: ??? (in /usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.30)
+| ->61.15% (72,704B) 0x400647D: call_init.part.0 (dl-init.c:70)
+|   ->61.15% (72,704B) 0x4006567: call_init (dl-init.c:33)
+|     ->61.15% (72,704B) 0x4006567: _dl_init (dl-init.c:117)
+|       ->61.15% (72,704B) 0x40202C9: ??? (in /usr/lib/x86_64-linux-gnu/ld-linux-x86-64.so.2)
+|         ->61.15% (72,704B) 0x1: ???
+|           ->61.15% (72,704B) 0x1FFEFFFD1A: ???
+|             ->61.15% (72,704B) 0x1FFEFFFD21: ???
+|               
+->25.86% (30,752B) 0x10E6F5: HashTable<int, int>::insert(int, int) (hash_set.h:110)
+| ->25.86% (30,752B) 0x10DE09: HashSet<int>::insert(int) (hash_set.h:271)
+|   ->25.86% (30,752B) 0x10A814: testSpaceHashSet(int) (main.cpp:26)
+|     ->25.86% (30,752B) 0x10CA73: main (main.cpp:411)
+|       
+->06.46% (7,680B) 0x10EEFF: HashTable<int, int>::rehashing() (hash_set.h:234)
+| ->06.46% (7,680B) 0x10E7F7: HashTable<int, int>::insert(int, int) (hash_set.h:136)
+|   ->06.46% (7,680B) 0x10DE09: HashSet<int>::insert(int) (hash_set.h:271)
+|     ->06.46% (7,680B) 0x10A814: testSpaceHashSet(int) (main.cpp:26)
+|       ->06.46% (7,680B) 0x10CA73: main (main.cpp:411)
+|         
+->00.03% (32B) in 1+ places, all below ms_print's threshold (01.00%)
+
+--------------------------------------------------------------------------------
+  n        time(i)         total(B)   useful-heap(B) extra-heap(B)    stacks(B)
+--------------------------------------------------------------------------------
+ 15    802,756,040          121,136          112,448         8,688            0
+ 16    802,778,840          125,936          116,288         9,648            0
+ 17    802,806,976          131,776          120,960        10,816            0
+ 18    802,831,672          136,816          124,992        11,824            0
+ 19    802,852,056          140,976          128,320        12,656            0
+ 20    802,945,653          152,184          139,328        12,856            0
+91.55% (139,328B) (heap allocation functions) malloc/new/new[], --alloc-fns, etc.
+->47.77% (72,704B) 0x490D939: ??? (in /usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.30)
+| ->47.77% (72,704B) 0x400647D: call_init.part.0 (dl-init.c:70)
+|   ->47.77% (72,704B) 0x4006567: call_init (dl-init.c:33)
+|     ->47.77% (72,704B) 0x4006567: _dl_init (dl-init.c:117)
+|       ->47.77% (72,704B) 0x40202C9: ??? (in /usr/lib/x86_64-linux-gnu/ld-linux-x86-64.so.2)
+|         ->47.77% (72,704B) 0x1: ???
+|           ->47.77% (72,704B) 0x1FFEFFFD1A: ???
+|             ->47.77% (72,704B) 0x1FFEFFFD21: ???
+|               
+->33.66% (51,232B) 0x10E6F5: HashTable<int, int>::insert(int, int) (hash_set.h:110)
+| ->33.66% (51,232B) 0x10DE09: HashSet<int>::insert(int) (hash_set.h:271)
+|   ->33.66% (51,232B) 0x10A814: testSpaceHashSet(int) (main.cpp:26)
+|     ->33.66% (51,232B) 0x10CA73: main (main.cpp:411)
+|       
+->10.09% (15,360B) 0x10EEFF: HashTable<int, int>::rehashing() (hash_set.h:234)
+| ->10.09% (15,360B) 0x10E7F7: HashTable<int, int>::insert(int, int) (hash_set.h:136)
+|   ->10.09% (15,360B) 0x10DE09: HashSet<int>::insert(int) (hash_set.h:271)
+|     ->10.09% (15,360B) 0x10A814: testSpaceHashSet(int) (main.cpp:26)
+|       ->10.09% (15,360B) 0x10CA73: main (main.cpp:411)
+|         
+->00.02% (32B) in 1+ places, all below ms_print's threshold (01.00%)
+
+--------------------------------------------------------------------------------
+  n        time(i)         total(B)   useful-heap(B) extra-heap(B)    stacks(B)
+--------------------------------------------------------------------------------
+ 21    802,961,149          150,336          136,832        13,504            0
+ 22    802,981,669          154,656          140,288        14,368            0
+ 23    803,002,189          158,976          143,744        15,232            0
+ 24    803,022,709          163,296          147,200        16,096            0
+ 25    803,043,229          167,616          150,656        16,960            0
+ 26    803,063,749          171,936          154,112        17,824            0
+ 27    803,084,269          176,256          157,568        18,688            0
+ 28    803,104,789          180,576          161,024        19,552            0
+ 29    803,125,309          184,896          164,480        20,416            0
+ 30    803,140,709          188,056          167,008        21,048            0
+ 31    803,161,093          192,216          170,336        21,880            0
+ 32    803,191,669          198,456          175,328        23,128            0
+ 33    803,222,245          204,696          180,320        24,376            0
+ 34    803,252,821          210,936          185,312        25,624            0
+ 35    803,283,397          217,176          190,304        26,872            0
+ 36    803,313,973          223,416          195,296        28,120            0
+ 37    803,344,549          229,656          200,288        29,368            0
+ 38    803,375,125          235,896          205,280        30,616            0
+ 39    803,582,622          257,144          226,368        30,776            0
+88.03% (226,368B) (heap allocation functions) malloc/new/new[], --alloc-fns, etc.
+->47.80% (122,912B) 0x10E6F5: HashTable<int, int>::insert(int, int) (hash_set.h:110)
+| ->47.80% (122,912B) 0x10DE09: HashSet<int>::insert(int) (hash_set.h:271)
+|   ->47.80% (122,912B) 0x10A814: testSpaceHashSet(int) (main.cpp:26)
+|     ->47.80% (122,912B) 0x10CA73: main (main.cpp:411)
+|       
+->28.27% (72,704B) 0x490D939: ??? (in /usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.30)
+| ->28.27% (72,704B) 0x400647D: call_init.part.0 (dl-init.c:70)
+|   ->28.27% (72,704B) 0x4006567: call_init (dl-init.c:33)
+|     ->28.27% (72,704B) 0x4006567: _dl_init (dl-init.c:117)
+|       ->28.27% (72,704B) 0x40202C9: ??? (in /usr/lib/x86_64-linux-gnu/ld-linux-x86-64.so.2)
+|         ->28.27% (72,704B) 0x1: ???
+|           ->28.27% (72,704B) 0x1FFEFFFD1A: ???
+|             ->28.27% (72,704B) 0x1FFEFFFD21: ???
+|               
+->11.95% (30,720B) 0x10EEFF: HashTable<int, int>::rehashing() (hash_set.h:234)
+| ->11.95% (30,720B) 0x10E7F7: HashTable<int, int>::insert(int, int) (hash_set.h:136)
+|   ->11.95% (30,720B) 0x10DE09: HashSet<int>::insert(int) (hash_set.h:271)
+|     ->11.95% (30,720B) 0x10A814: testSpaceHashSet(int) (main.cpp:26)
+|       ->11.95% (30,720B) 0x10CA73: main (main.cpp:411)
+|         
+->00.01% (32B) in 1+ places, all below ms_print's threshold (01.00%)
+
+--------------------------------------------------------------------------------
+  n        time(i)         total(B)   useful-heap(B) extra-heap(B)    stacks(B)
+--------------------------------------------------------------------------------
+ 40    803,613,698          253,456          221,376        32,080            0
+ 41    803,629,278          256,736          224,000        32,736            0
+ 42    803,644,858          260,016          226,624        33,392            0
+ 43    803,660,438          263,296          229,248        34,048            0
+87.07% (229,248B) (heap allocation functions) malloc/new/new[], --alloc-fns, etc.
+->51.67% (136,032B) 0x10E6F5: HashTable<int, int>::insert(int, int) (hash_set.h:110)
+| ->51.67% (136,032B) 0x10DE09: HashSet<int>::insert(int) (hash_set.h:271)
+|   ->51.67% (136,032B) 0x10A814: testSpaceHashSet(int) (main.cpp:26)
+|     ->51.67% (136,032B) 0x10CA73: main (main.cpp:411)
+|       
+->27.61% (72,704B) 0x490D939: ??? (in /usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.30)
+| ->27.61% (72,704B) 0x400647D: call_init.part.0 (dl-init.c:70)
+|   ->27.61% (72,704B) 0x4006567: call_init (dl-init.c:33)
+|     ->27.61% (72,704B) 0x4006567: _dl_init (dl-init.c:117)
+|       ->27.61% (72,704B) 0x40202C9: ??? (in /usr/lib/x86_64-linux-gnu/ld-linux-x86-64.so.2)
+|         ->27.61% (72,704B) 0x1: ???
+|           ->27.61% (72,704B) 0x1FFEFFFD1A: ???
+|             ->27.61% (72,704B) 0x1FFEFFFD21: ???
+|               
+->07.78% (20,480B) 0x10EEFF: HashTable<int, int>::rehashing() (hash_set.h:234)
+| ->07.78% (20,480B) 0x10E7F7: HashTable<int, int>::insert(int, int) (hash_set.h:136)
+|   ->07.78% (20,480B) 0x10DE09: HashSet<int>::insert(int) (hash_set.h:271)
+|     ->07.78% (20,480B) 0x10A814: testSpaceHashSet(int) (main.cpp:26)
+|       ->07.78% (20,480B) 0x10CA73: main (main.cpp:411)
+|         
+->00.01% (32B) in 1+ places, all below ms_print's threshold (01.00%)
+
+--------------------------------------------------------------------------------
+  n        time(i)         total(B)   useful-heap(B) extra-heap(B)    stacks(B)
+--------------------------------------------------------------------------------
+ 44    803,676,018          266,576          231,872        34,704            0
+ 45    803,691,598          269,856          234,496        35,360            0
+ 46    803,707,178          273,136          237,120        36,016            0
+ 47    803,722,758          276,416          239,744        36,672            0
+ 48    803,738,338          279,696          242,368        37,328            0
+86.65% (242,368B) (heap allocation functions) malloc/new/new[], --alloc-fns, etc.
+->53.33% (149,152B) 0x10E6F5: HashTable<int, int>::insert(int, int) (hash_set.h:110)
+| ->53.33% (149,152B) 0x10DE09: HashSet<int>::insert(int) (hash_set.h:271)
+|   ->53.33% (149,152B) 0x10A814: testSpaceHashSet(int) (main.cpp:26)
+|     ->53.33% (149,152B) 0x10CA73: main (main.cpp:411)
+|       
+->25.99% (72,704B) 0x490D939: ??? (in /usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.30)
+| ->25.99% (72,704B) 0x400647D: call_init.part.0 (dl-init.c:70)
+|   ->25.99% (72,704B) 0x4006567: call_init (dl-init.c:33)
+|     ->25.99% (72,704B) 0x4006567: _dl_init (dl-init.c:117)
+|       ->25.99% (72,704B) 0x40202C9: ??? (in /usr/lib/x86_64-linux-gnu/ld-linux-x86-64.so.2)
+|         ->25.99% (72,704B) 0x1: ???
+|           ->25.99% (72,704B) 0x1FFEFFFD1A: ???
+|             ->25.99% (72,704B) 0x1FFEFFFD21: ???
+|               
+->07.32% (20,480B) 0x10EEFF: HashTable<int, int>::rehashing() (hash_set.h:234)
+| ->07.32% (20,480B) 0x10E7F7: HashTable<int, int>::insert(int, int) (hash_set.h:136)
+|   ->07.32% (20,480B) 0x10DE09: HashSet<int>::insert(int) (hash_set.h:271)
+|     ->07.32% (20,480B) 0x10A814: testSpaceHashSet(int) (main.cpp:26)
+|       ->07.32% (20,480B) 0x10CA73: main (main.cpp:411)
+|         
+->00.01% (32B) in 1+ places, all below ms_print's threshold (01.00%)
+
+--------------------------------------------------------------------------------
+  n        time(i)         total(B)   useful-heap(B) extra-heap(B)    stacks(B)
+--------------------------------------------------------------------------------
+ 49    803,761,708          284,616          246,304        38,312            0
+ 50    803,776,718          287,776          248,832        38,944            0
+ 51    803,791,728          290,936          251,360        39,576            0
+ 52  1,603,802,932          293,256          253,216        40,040            0
+86.35% (253,216B) (heap allocation functions) malloc/new/new[], --alloc-fns, etc.
+->54.56% (160,000B) 0x10E6F5: HashTable<int, int>::insert(int, int) (hash_set.h:110)
+| ->54.56% (160,000B) 0x10DE09: HashSet<int>::insert(int) (hash_set.h:271)
+|   ->54.56% (160,000B) 0x10A814: testSpaceHashSet(int) (main.cpp:26)
+|     ->54.56% (160,000B) 0x10CA73: main (main.cpp:411)
+|       
+->24.79% (72,704B) 0x490D939: ??? (in /usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.30)
+| ->24.79% (72,704B) 0x400647D: call_init.part.0 (dl-init.c:70)
+|   ->24.79% (72,704B) 0x4006567: call_init (dl-init.c:33)
+|     ->24.79% (72,704B) 0x4006567: _dl_init (dl-init.c:117)
+|       ->24.79% (72,704B) 0x40202C9: ??? (in /usr/lib/x86_64-linux-gnu/ld-linux-x86-64.so.2)
+|         ->24.79% (72,704B) 0x1: ???
+|           ->24.79% (72,704B) 0x1FFEFFFD1A: ???
+|             ->24.79% (72,704B) 0x1FFEFFFD21: ???
+|               
+->06.98% (20,480B) 0x10EEFF: HashTable<int, int>::rehashing() (hash_set.h:234)
+| ->06.98% (20,480B) 0x10E7F7: HashTable<int, int>::insert(int, int) (hash_set.h:136)
+|   ->06.98% (20,480B) 0x10DE09: HashSet<int>::insert(int) (hash_set.h:271)
+|     ->06.98% (20,480B) 0x10A814: testSpaceHashSet(int) (main.cpp:26)
+|       ->06.98% (20,480B) 0x10CA73: main (main.cpp:411)
+|         
+->00.01% (32B) in 1+ places, all below ms_print's threshold (01.00%)
+
+--------------------------------------------------------------------------------
+  n        time(i)         total(B)   useful-heap(B) extra-heap(B)    stacks(B)
+--------------------------------------------------------------------------------
+ 53  1,603,817,856          278,640          241,536        37,104            0
+ 54  1,603,832,780          264,080          229,888        34,192            0
+ 55  1,603,847,704          249,520          218,240        31,280            0
+ 56  1,603,862,628          234,960          206,592        28,368            0
+ 57  1,603,877,552          220,400          194,944        25,456            0
+ 58  1,603,892,476          205,840          183,296        22,544            0
+ 59  1,603,907,400          191,280          171,648        19,632            0
+ 60  1,603,922,324          176,720          160,000        16,720            0
+ 61  1,603,937,248          162,160          148,352        13,808            0
+ 62  1,603,952,172          147,600          136,704        10,896            0
+92.62% (136,704B) (heap allocation functions) malloc/new/new[], --alloc-fns, etc.
+->49.26% (72,704B) 0x490D939: ??? (in /usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.30)
+| ->49.26% (72,704B) 0x400647D: call_init.part.0 (dl-init.c:70)
+|   ->49.26% (72,704B) 0x4006567: call_init (dl-init.c:33)
+|     ->49.26% (72,704B) 0x4006567: _dl_init (dl-init.c:117)
+|       ->49.26% (72,704B) 0x40202C9: ??? (in /usr/lib/x86_64-linux-gnu/ld-linux-x86-64.so.2)
+|         ->49.26% (72,704B) 0x1: ???
+|           ->49.26% (72,704B) 0x1FFEFFFD1A: ???
+|             ->49.26% (72,704B) 0x1FFEFFFD21: ???
+|               
+->29.46% (43,488B) 0x10E6F5: HashTable<int, int>::insert(int, int) (hash_set.h:110)
+| ->29.46% (43,488B) 0x10DE09: HashSet<int>::insert(int) (hash_set.h:271)
+|   ->29.46% (43,488B) 0x10A814: testSpaceHashSet(int) (main.cpp:26)
+|     ->29.46% (43,488B) 0x10CA73: main (main.cpp:411)
+|       
+->13.88% (20,480B) 0x10EEFF: HashTable<int, int>::rehashing() (hash_set.h:234)
+| ->13.88% (20,480B) 0x10E7F7: HashTable<int, int>::insert(int, int) (hash_set.h:136)
+|   ->13.88% (20,480B) 0x10DE09: HashSet<int>::insert(int) (hash_set.h:271)
+|     ->13.88% (20,480B) 0x10A814: testSpaceHashSet(int) (main.cpp:26)
+|       ->13.88% (20,480B) 0x10CA73: main (main.cpp:411)
+|         
+->00.02% (32B) in 1+ places, all below ms_print's threshold (01.00%)
+
+--------------------------------------------------------------------------------
+  n        time(i)         total(B)   useful-heap(B) extra-heap(B)    stacks(B)
+--------------------------------------------------------------------------------
+ 63  1,603,967,096          133,040          125,056         7,984            0
+ 64  1,603,982,020          118,480          113,408         5,072            0
+ 65  1,603,996,944          103,920          101,760         2,160            0
+ 66  1,604,020,827                0                0             0            0
