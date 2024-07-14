@@ -1,19 +1,24 @@
 #include <iostream>
-#include <vector>
-#include<unordered_set>
 using namespace  std;
 
 class BitVector {
 private:
-    vector<int> bv;
+    int* bv;
     int capacity;
 public:
     BitVector(int val) {
         initbv(val);
     }
+    ~BitVector(){
+        delete[] bv;
+    }
 
     bool initbv(int val) {
-        bv = vector<int>(val / 32 + 1, 0);
+//        bv = vector<int>(val / 32 + 1, 0);
+        bv = new int[val /32 + 1];
+        for (int i = 0; i < val /32 + 1; ++i) {
+            bv[i] = 0;
+        }
         capacity = val;
         return true;
     }
@@ -47,7 +52,9 @@ public:
     }
 
     void clearAll() {
-        fill(bv.begin(), bv.end(), 0);
+        for (int i = 0; i < capacity /32 + 1; ++i) {
+            bv[i] = 0;
+        }
     }
 
     int size () {
@@ -108,4 +115,3 @@ public:
     }
 
 };
-
